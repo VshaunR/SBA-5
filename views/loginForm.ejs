@@ -55,7 +55,7 @@ li{
   align-items: center;
   gap: 50px;
 }
-#create{
+#create,#createReg{
   display: grid;
   justify-content: center;
   
@@ -78,6 +78,7 @@ li{
   font-weight: bold;
 }
   </style>
+  <script defer type="module/javascript" src="../scripts/script.mjs"></script>
   <title>Document</title>
 </head>
 <body>
@@ -86,18 +87,22 @@ li{
     
     <main class="main">
 
+ 
+
+    
       <form action="/api/user/login" method="POST" id="create">
         <h3>Login</h3>
         <br>
-        <input type="email" name="username" id="username" autofocus placeholder= "Enter your email" >
+        <input type="email" name="username" id="username" autofocus placeholder= "Enter Email" >
         <input type="hidden" name="id" value="">
         <br>
-        <input type="password" name="password" id="password" autofocus placeholder= "Enter your password" >
+        <input type="password" name="password" id="password" autofocus placeholder= "Enter Password" >
         <br>
         <input type="submit" value="Login" id="submit" class="btn">
       
       </form>
-   
+    
+     
 
    
     </main>

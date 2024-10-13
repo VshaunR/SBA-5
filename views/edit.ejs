@@ -16,7 +16,7 @@
   <form action="/api/user/edit/<%= edit.id %>" method="post" id="create">
   
    
-  <input type="text" name="username" value="<%= edit.username %>">
+  <input type="text" name="username" pattern="[<%= edit.username %>]" value="<%= edit.username %>">
   <label for="type">Account Type:
     <select name="type" id="type">
       <option value="Checking">Checking</option>
@@ -24,7 +24,7 @@
       <option value="Big MoNeY">Big MoNeY</option>
     </select>
   </label>
-    <input type="text" name="balance" value="<%= edit.balance %>">
+    <input type="text" name="balance"  pattern="^(0|[1-9][0-9]*)$" value="<%= edit.balance %>">
     <input type="submit" value="Edit" class="btn edit">
   </form>
 <% } %>

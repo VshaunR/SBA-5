@@ -12,13 +12,15 @@
     <%- include('./header.ejs') %>
     
     <main class="main">
-      <form action="/api/user/register" method="POST" id="create">
+      <form action="/api/user/register" method="POST" id="createReg">
         <h3>Register to our Bank</h3>
+        
         <input type="text" name="name" id="name" placeholder="Enter your name."  required>
         <br>
-        <input type="email" name="username" id="username"  placeholder= "Enter your email" required >
+        
+        <input type="email" name="username" id="username" title="one email per user"  placeholder="Enter your Email" required minlength="8" >
         <br>
-        <input type="password" name="password" id="password"  placeholder= "Enter your password"    required >
+        <input type="password" name="password" id="password" title="password must be more thatn 5 characters long" placeholder= "Enter your password"    required  minlength="5">
         <br>
         <!-- <input type="hidden" name="id" id="id" value=""> -->
         <input type="submit" value="Create" id="submit" class="btn">

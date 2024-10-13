@@ -13,8 +13,10 @@ router.post('/register',(req,res)=>{
      if(name && email && password){
       if(users.find((u)=>u.username ==req.body.username)){
         console.log('username already exists')
-        res.redirect('/');
-        return;
+       
+       res.redirect('/')
+       
+       
        }
        const locals = {
         id:users.length+1,
@@ -38,9 +40,13 @@ router.post('/register',(req,res)=>{
 });
 
 router.get('/login',(req,res)=>{
+  let message= {
+    email:'Enter Email',
+    password:'Enter Password'
+  }
   try{
 
-    res.render('loginForm.ejs')
+    res.render('loginForm.ejs',{message:message})
 
   }catch(err){
     console.error(err)
@@ -50,15 +56,16 @@ router.get('/login',(req,res)=>{
 router.post('/login',(req,res)=>{
 
     try{
+       let error= 'Invalid credentials'
       let email = req.body.username;
       let password = req.body.password;
       if(users.find(u=>u.username ==req.body.username)){
         let user= users.find((u)=>u.username== req.body.username);
         // console.log(user.id)
 
-        res.render('home.ejs')
-      }else{
-        res.send('invalid credentials')
+        res.render('home.ejs',{username:req.body.username})
+      }else if(users.find(u=>u.username !==req.body.username)){
+        res.render('loginForm.ejs',{error:error})
       }
     }catch(err){
       console.log(err)
@@ -87,6 +94,7 @@ router.post('/create',(req,res)=>{
     let id;
     let user = users.find((u)=>u.username ==email)
     // console.log(user)
+    //need error handleing here
     id=user.id;
     let userAcc ={
       id:accounts.length+1,
@@ -114,10 +122,10 @@ router.get('/create/:id',(req,res)=>{
     // console.log(id)
    
     let userAccount = accounts.find((a)=>a.userId ==id)
-    console.log(userAccount);
+    console.log(userAccount.username);
  
     // console.log(userAccount)
-    res.render('home.ejs',{accounts:accounts,id:id})
+    res.render('home.ejs',{accounts:accounts,id:id,username:accounts.username})
   }catch(err){
     console.error(err)
   }

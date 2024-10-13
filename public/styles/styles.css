@@ -47,11 +47,12 @@ li{
   align-items: center;
   gap: 50px;
 }
-#create{
+#create,#createReg{
   display: grid;
   justify-content: center;
   
 }
+
  input{
   padding: 1rem;
   width: 200px;
