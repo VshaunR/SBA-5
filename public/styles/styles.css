@@ -17,7 +17,8 @@ body{
 }
 a{
   text-decoration: none;
-  color: black;
+  color: rgb(214, 201, 201);
+  font-weight: bold;
 }
 li{
   list-style: none;
@@ -45,4 +46,26 @@ li{
   justify-content: center;
   align-items: center;
   gap: 50px;
+}
+#create{
+  display: grid;
+  justify-content: center;
+  
+}
+ input{
+  padding: 1rem;
+  width: 200px;
+  align-items: center;
+  border: none;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(31, 163, 31);
+  color: black;
+  font-size: 1.0rem;
+  font-weight: bold;
 }

@@ -205,7 +205,10 @@ router.post('/delete/:id',(req,res)=>{
 })
 
 
+router.get('/logout',(req,res)=>{
 
+ res.redirect('/');
+})
 
 
 export default router;

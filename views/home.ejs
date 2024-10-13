@@ -5,6 +5,86 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/styles.css">
   <title>Document</title>
+  <style>
+    body{
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-family: sans-serif;
+
+
+}
+.container{
+  display: grid;
+  height: 100vh;
+ 
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: "header header header"
+                        "main main main"
+                        "footer footer footer";
+}
+a{
+  text-decoration: none;
+  color: rgb(214, 201, 201);
+  font-weight: bold;
+}
+li{
+  list-style: none;
+}
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: header;
+  background-color: blue;
+  height: 20vh;
+}
+.main{
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.footer{
+  grid-area: footer;
+}
+.menu{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+#create{
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  
+}
+ input{
+  padding: 1rem;
+  width: 200px;
+  align-items: center;
+  border: none;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(31, 163, 31);
+  color: black;
+  font-size: 1.0rem;
+  font-weight: bold;
+}
+p,h1{
+  margin: 0;
+}
+.edit-btn,.delete-btn{
+  color: black;
+}
+  </style>
 </head>
 <body>
   <div class="container">
@@ -12,11 +92,11 @@
    
 
  <main class="main">
-  <h1>Welcome User  </h1>
-  <p>You can Create and Account With us.</p>
-  <form action="/api/user/create" method="post" id="home">
-  
-   
+
+  <form action="/api/user/create" method="post" id="create">
+    <h1>Welcome User  </h1>
+  <p style="font-weight: bold;">You can Create an Account With us.</p>
+ 
     <input type="text" name="username" placeholder="Enter user name" required>
   <label for="type">Account Type:
     <select name="type" id="type" required>
@@ -26,7 +106,7 @@
     </select>
   </label>
     <input type="text" name="balance" placeholder="Enter your balance" required>
-    <input type="submit" value="create">
+    <input type="submit" value="create" class="btn">
   </form>
 
   <% if (locals.accounts,locals.id) { %>
@@ -36,10 +116,10 @@
       <p><%= acc.username %></p>
       <p><%= acc.type %></p>
       <p><%= acc.balance %></p>
-      <a href="/api/user/edit/<%= acc.id %>">Edit</a>
-    <form action="/api/user/delete/<%= acc.id %>" method="post">
+      <a href="/api/user/edit/<%= acc.id %>" class="edit-btn">Edit</a>
+    <form action="/api/user/delete/<%= acc.id %>" method="post" id="create" class="edit-btn">
       <!-- <a href="/api/user/delete/">Delete</a> -->
-       <input type="submit" value="Delete">
+       <input type="submit" value="Delete" class=" delete-btn">
     </form>
      <% } %>
       </div>
