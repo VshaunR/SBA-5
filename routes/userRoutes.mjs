@@ -24,7 +24,7 @@ router.post('/register',(req,res)=>{
       };
       users.push(locals)
      }
-      res.render('login.ejs')
+      res.render('loginForm.ejs')
       // console.log(req.body.name)
       
   
@@ -40,7 +40,7 @@ router.post('/register',(req,res)=>{
 router.get('/login',(req,res)=>{
   try{
 
-    res.render('login.ejs')
+    res.render('loginForm.ejs')
 
   }catch(err){
     console.error(err)

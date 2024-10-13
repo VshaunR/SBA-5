@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    
+    <%- include('./header.ejs') %>
     
     <main class="main">
 
@@ -19,7 +19,7 @@
         <input type="email" name="username" id="username" autofocus placeholder= "Enter your email" >
         <input type="hidden" name="id" value="">
         <br>
-        <input type="text" name="password" id="password" autofocus placeholder= "Enter your password" >
+        <input type="password" name="password" id="password" autofocus placeholder= "Enter your password" >
         <br>
         <input type="submit" value="Login" id="submit">
       
@@ -28,6 +28,7 @@
 
    
     </main>
+    <footer class="footer"></footer>
   </div>
   <script>
 

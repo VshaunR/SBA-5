@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/styles.css">
   <title>Document</title>
 </head>
 <body>
+  <div class="container">
+    <main class="main">
+  <%- include('./header.ejs') %>
 <% if (locals.edit) { %>
   <h1>Welcome To Editing  </h1>
   <p>You can Create and Account With us.</p>
-  <form action="/api/user/edit/<%= edit.id %>" method="post" id="home">
+  <form action="/api/user/edit/<%= edit.id %>" method="post" id="create">
   
    
   <input type="text" name="username" value="<%= edit.username %>">
@@ -24,6 +28,8 @@
     <input type="submit" value="Edit" class="btn">
   </form>
 <% } %>
-
+</main>
+<footer class="footer"></footer>
+</div>
 </body>
 </html>
