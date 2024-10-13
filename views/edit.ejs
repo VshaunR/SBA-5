@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<% if (locals.edit) { %>
+  <h1>Welcome To Editing  </h1>
+  <p>You can Create and Account With us.</p>
+  <form action="/api/user/edit/<%= edit.id %>" method="post" id="home">
+  
+   
+  <input type="text" name="username" value="<%= edit.username %>">
+  <label for="type">Account Type:
+    <select name="type" id="type">
+      <option value="Checking">Checking</option>
+      <option value="Savings">Savings</option>
+      <option value="Big MoNeY">Big MoNeY</option>
+    </select>
+  </label>
+    <input type="text" name="balance" value="<%= edit.balance %>">
+    <input type="submit" value="Edit" class="btn">
+  </form>
+<% } %>
+
+</body>
+</html>

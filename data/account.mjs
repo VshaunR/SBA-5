@@ -1,0 +1,23 @@
+export let accounts=[
+  {
+    id:1,
+    userId:1,
+    username:'Jjack@gmail.com',
+    type:'checking',
+    balance:'100'
+  },
+  {
+    id:2,
+    userId:2,
+    username:'Jfake@gmail.com',
+    type:'savings',
+    balance:'1000'
+  },
+  {
+    id:3,
+    userId:3,
+    username:'SSalmon@gmail.com',
+    type:'checking',
+    balance:'10000'
+  }
+]
