@@ -1,11 +1,13 @@
 import express from 'express';
 let router = express.Router();
-
 import {users} from '../data/user.mjs';
 import {accounts} from '../data/account.mjs';
 
-router.post('/register',(req,res)=>{
 
+
+
+
+router.post('/register',(req,res)=>{
   try{
     let name = req.body.name;
     let email = req.body.username;
@@ -13,10 +15,8 @@ router.post('/register',(req,res)=>{
      if(name && email && password){
       if(users.find((u)=>u.username ==req.body.username)){
         console.log('username already exists')
-       
-       res.redirect('/')
-       
-       
+        res.redirect('/');
+        return;
        }
        const locals = {
         id:users.length+1,
@@ -26,7 +26,7 @@ router.post('/register',(req,res)=>{
       };
       users.push(locals)
      }
-      res.render('loginForm.ejs')
+      res.render('login.ejs')
       // console.log(req.body.name)
       
   
@@ -35,48 +35,30 @@ router.post('/register',(req,res)=>{
   }catch(err){
     console.error(err);
   }
-
-
 });
-
 router.get('/login',(req,res)=>{
-  let message= {
-    email:'Enter Email',
-    password:'Enter Password'
-  }
   try{
-
-    res.render('loginForm.ejs',{message:message})
-
+    res.render('login.ejs')
   }catch(err){
     console.error(err)
   }
-
 })
 router.post('/login',(req,res)=>{
-
     try{
-       let error= 'Invalid credentials'
       let email = req.body.username;
       let password = req.body.password;
       if(users.find(u=>u.username ==req.body.username)){
         let user= users.find((u)=>u.username== req.body.username);
         // console.log(user.id)
-
-        res.render('home.ejs',{username:req.body.username})
-      }else if(users.find(u=>u.username !==req.body.username)){
-        res.render('loginForm.ejs',{error:error})
+        res.render('home.ejs')
+      }else{
+        res.send('invalid credentials')
       }
     }catch(err){
       console.log(err)
     }
-
-
 })
-
-
 router.get('/create',(req,res)=>{
-
   try{
    
     
@@ -84,7 +66,6 @@ router.get('/create',(req,res)=>{
   }catch(err){
     console.error(err)
   }
-
 });
 router.post('/create',(req,res)=>{
   try{
@@ -94,7 +75,6 @@ router.post('/create',(req,res)=>{
     let id;
     let user = users.find((u)=>u.username ==email)
     // console.log(user)
-    //need error handleing here
     id=user.id;
     let userAcc ={
       id:accounts.length+1,
@@ -102,7 +82,6 @@ router.post('/create',(req,res)=>{
       username:email,
       type:type,
       balance:balance
-
     }
     accounts.push(userAcc);
   // console.log(accounts)
@@ -112,29 +91,22 @@ router.post('/create',(req,res)=>{
     console.error(err)
   }
 })
-
 router.get('/create/:id',(req,res)=>{
-
   try{
    
-
     let id = req.params.id;
     // console.log(id)
    
     let userAccount = accounts.find((a)=>a.userId ==id)
-    console.log(userAccount.username);
+    console.log(userAccount);
  
     // console.log(userAccount)
-    res.render('home.ejs',{accounts:accounts,id:id,username:accounts.username})
+    res.render('home.ejs',{accounts:accounts,id:id})
   }catch(err){
     console.error(err)
   }
-
 });
-
-
 router.get('/edit/:id',(req,res)=>{
-
   try{
     // console.log(req.params);
     let id= req.params.id;
@@ -143,14 +115,8 @@ router.get('/edit/:id',(req,res)=>{
   }catch(err){
     console.error(err)
   }
-
 });
-
-
-
-
 router.post('/edit/:id',(req,res)=>{
-
   try{
     const email = req.body.username;
     const type = req.body.type;
@@ -177,7 +143,6 @@ router.post('/edit/:id',(req,res)=>{
   }catch(err){
     console.error(err)
   }
-
 });
 router.get('/delete/:id',(req,res)=>{
  
@@ -188,19 +153,14 @@ router.get('/delete/:id',(req,res)=>{
  
     // console.log(userAccount)
     res.render('home.ejs',{accounts:accounts,id:id})
-
-
     }catch(err){
       console.error(err);
     }
 });
-
-
 router.post('/delete/:id',(req,res)=>{
   // console.log(req.params.id)
   try{
     let id = req.params.id;
-
     let index = accounts.findIndex((a)=>a.userId ==id)
     accounts.splice(index,1)
     res.render('home.ejs',{accounts:accounts,id:id})
@@ -208,15 +168,6 @@ router.post('/delete/:id',(req,res)=>{
   }catch(err){
     console.error(err)
   }
-
  
 })
-
-
-router.get('/logout',(req,res)=>{
-
- res.redirect('/');
-})
-
-
 export default router;

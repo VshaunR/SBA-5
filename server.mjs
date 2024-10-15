@@ -1,5 +1,5 @@
 import express from 'express';
-import ejs from 'ejs';
+
 import bodyParser from 'body-parser';
 import userRouter from './routes/userRoutes.mjs';
 const app = express();
