@@ -36,13 +36,25 @@ router.post('/register',(req,res)=>{
     console.error(err);
   }
 });
+
+
+
 router.get('/login',(req,res)=>{
   try{
     res.render('login.ejs')
   }catch(err){
     console.error(err)
   }
-})
+});
+
+
+router.get('/allAccounts/:id',(req,res)=>{
+
+    
+
+    res.render('allAccounts.ejs',{accounts:accounts})
+
+});
 router.post('/login',(req,res)=>{
     try{
       let email = req.body.username;
@@ -50,7 +62,7 @@ router.post('/login',(req,res)=>{
       if(users.find(u=>u.username ==req.body.username)){
         let user= users.find((u)=>u.username== req.body.username);
         // console.log(user.id)
-        res.render('home.ejs')
+        res.render('home.ejs',{username:email})
       }else{
         res.send('invalid credentials')
       }
@@ -58,15 +70,15 @@ router.post('/login',(req,res)=>{
       console.log(err)
     }
 })
-router.get('/create',(req,res)=>{
-  try{
+// router.get('/create',(req,res)=>{
+//   try{
    
     
-    res.render('home.ejs')
-  }catch(err){
-    console.error(err)
-  }
-});
+//     res.render('home.ejs')
+//   }catch(err){
+//     console.error(err)
+//   }
+// });
 router.post('/create',(req,res)=>{
   try{
     const email = req.body.username;
